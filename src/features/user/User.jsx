@@ -65,7 +65,7 @@ function User() {
         </tbody>
       </table> */}
 
-      {data?.length > 0 && (
+      {data?.length > 0 ? (
         <TableContainer component={Paper} className="mt-4">
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
@@ -92,6 +92,8 @@ function User() {
             </TableBody>
           </Table>
         </TableContainer>
+      ) : (
+        <span>No user found.</span>
       )}
     </div>
   );
