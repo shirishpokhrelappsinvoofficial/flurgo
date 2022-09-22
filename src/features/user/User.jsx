@@ -1,28 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { Table, Typography } from "antd";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FetchRepoForUser } from "./userSlice";
 
 function User() {
   const dispatch = useDispatch();
+  const [username, setUsername] = useState("");
   const [dataSource, setDataSource] = useState([]);
-  const columns = [
-    {
-      title: "Public Repo Name",
-      dataIndex: "name",
-    },
-    {
-      title: "Stars",
-      dataIndex: "borrow",
-    },
-  ];
+  const data = useSelector((store) => store.user.data);
 
   useEffect(() => {
-    dispatch(FetchRepoForUser("shirish"));
-  }, [dispatch]);
+    if (username) {
+      dispatch(FetchRepoForUser(username));
+    }
+  }, [dispatch, username]);
 
   return (
-    <div>
+    <div className="m-auto ">
+      <div className="d-flex">
+        <label className="fw-bold m-2">Username</label>
+        <input
+          type="text"
+          className=""
+          value={username}
+          onChange={(e) => {
+            setUsername(e.target.value);
+          }}
+        />
+      </div>
+
       <table className="table-responsive">
         <thead>
           <tr>
