@@ -29,18 +29,22 @@ function User() {
         />
       </div>
 
-      <table className="table-responsive">
+      <table className="table-responsive m-auto">
         <thead>
           <tr>
-            <th scope="col">Public Repos</th>
-            <th scope="col">Stars</th>
+            <th scope="col mx-2">Public Repos</th>
+            <th scope="col mx-2">Stars</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>140</td>
-            <td>3</td>
-          </tr>
+          {data?.map((item, i) => {
+            return (
+              <tr key={i}>
+                <td>{item?.name}</td>
+                <td>{item?.watchers_count}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
